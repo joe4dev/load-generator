@@ -58,6 +58,6 @@ class JmeterTask < ActiveRecord::Base
   end
 
   def cleanup_filesystem
-    FileUtils.rmdir(base_path)
+    FileUtils.rm_r(base_path)
   end
 end
