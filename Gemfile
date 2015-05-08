@@ -4,6 +4,9 @@ ruby '2.2.1'
 
 gem 'rails', '4.2.1'
 
+### Process management
+gem 'foreman', '~> 0.78.0'
+
 ### Background jobs
 gem 'delayed_job_active_record', '~> 4.0.3'
 gem 'cwb', '~> 0.1.1'

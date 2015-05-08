@@ -12,8 +12,7 @@ This "hacky" Rails application provides a JSON endpoint to submit JMeter tasks v
 
 ```bash
 rake db:migrate
-rails server
-rake jobs:work
+foreman start
 ```
 
 ## Usage
