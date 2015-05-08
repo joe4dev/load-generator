@@ -1,0 +1,33 @@
+<%= form_for(@jmeter_task) do |f| %>
+  <% if @jmeter_task.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@jmeter_task.errors.count, "error") %> prohibited this jmeter_task from being saved:</h2>
+
+      <ul>
+      <% @jmeter_task.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :test_plan %><br>
+    <%= f.text_field :test_plan %>
+  </div>
+  <div class="field">
+    <%= f.label :benchmark %><br>
+    <%= f.text_field :benchmark %>
+  </div>
+  <div class="field">
+    <%= f.label :node %><br>
+    <%= f.text_field :node %>
+  </div>
+  <div class="field">
+    <%= f.label :status %><br>
+    <%= f.select :status, JmeterTask.statuses.keys.to_a.map { |w| [w.humanize, w] } %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

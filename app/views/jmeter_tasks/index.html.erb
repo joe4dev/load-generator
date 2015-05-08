@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Jmeter Tasks</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Test plan</th>
+      <th>Benchmark</th>
+      <th>Node</th>
+      <th>Status</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @jmeter_tasks.each do |jmeter_task| %>
+      <tr>
+        <td><%= jmeter_task.test_plan %></td>
+        <td><%= jmeter_task.benchmark %></td>
+        <td><%= jmeter_task.node %></td>
+        <td><%= jmeter_task.status %></td>
+        <td><%= link_to 'Show', jmeter_task %></td>
+        <td><%= link_to 'Edit', edit_jmeter_task_path(jmeter_task) %></td>
+        <td><%= link_to 'Destroy', jmeter_task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Jmeter task', new_jmeter_task_path %>

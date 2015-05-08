@@ -4,6 +4,10 @@ ruby '2.2.1'
 
 gem 'rails', '4.2.1'
 
+### Background jobs
+gem 'delayed_job_active_record', '~> 4.0.3'
+gem 'cwb', '~> 0.1.1'
+
 ### Debugging
 gem 'pry'
 gem 'pry-rails' # Use pry as Rails console

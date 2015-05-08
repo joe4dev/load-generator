@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Test plan:</strong>
+  <%= @jmeter_task.test_plan %>
+</p>
+
+<p>
+  <strong>Benchmark:</strong>
+  <%= @jmeter_task.benchmark %>
+</p>
+
+<p>
+  <strong>Node:</strong>
+  <%= @jmeter_task.node %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @jmeter_task.status %>
+</p>
+
+<%= link_to 'Edit', edit_jmeter_task_path(@jmeter_task) %> |
+<%= link_to 'Back', jmeter_tasks_path %>
