@@ -18,7 +18,7 @@ rake jobs:work
 
 ## Usage
 
-Example with Faraday https://github.com/lostisland/faraday
+Example with Faraday https://github.com/lostisland/faraday from `wordpress-bench` https://github.com/sealuzh/cwb-benchmarks/tree/master/wordpress-bench
 
 ```ruby
 load_generator = 'localhost:3000'
