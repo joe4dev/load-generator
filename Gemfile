@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.2.1'
+ruby '2.2.2'
 #ruby-gemset=load_generator
 
 gem 'rails', '4.2.1'
