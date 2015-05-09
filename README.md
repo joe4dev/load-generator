@@ -36,3 +36,9 @@ payload = {
 }
 connection.post '/jmeter_tasks', payload
 ```
+
+
+## Notes
+
+This app aims to decouple load generation from CWB client nodes.
+JMeter provides its own server for remote testing (see http://jmeter.apache.org/usermanual/remote-test.html), however this would require a bi-directional RMI connection between the CWB client node (i.e., system under test) and the load generator which would negatively influence the benchmark.
