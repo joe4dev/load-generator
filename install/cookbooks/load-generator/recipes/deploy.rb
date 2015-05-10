@@ -52,7 +52,7 @@ deploy app['dir'] do
   )
   migrate true
   migration_command 'bundle exec rake db:migrate --trace'
-  environment(node['load-generator']['env'])
+  environment(node['load-generator']['env'].map { |k, v| [k.to_s, v.to_s] }.to_h)
 
   ### Symlinks
   purge_before_symlink.clear
