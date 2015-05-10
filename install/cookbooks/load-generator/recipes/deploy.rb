@@ -21,6 +21,34 @@ deploy app['dir'] do
 
   ### Migrations
   before_migrate do
+    # MUST remove existing log directory before creating the symlink
+    directory File.join(release_path, 'log') do
+      owner new_resource.user
+      group new_resource.group
+      action :delete
+      recursive true
+    end
+
+    # Using different owners is useless because this resource enforces ownership
+    # of the entire deployment directory recursively:
+    # See https://github.com/chef/chef/blob/master/lib/chef/provider/deploy.rb#L277
+    %w(log storage).each do |dir|
+      directory File.join(shared_path, dir) do
+        owner new_resource.user
+        group new_resource.group
+        mode '0755'
+        action :create
+      end
+      # MUST link the log dir before any Rails commands creates this directory!
+      link File.join(release_path, dir) do
+        # mode '0755' # Not implemented!
+        to File.join(shared_path, dir)
+      end
+    end
+
+    # NOTE: One might consider using lograte here similar to
+    # https://github.com/poise/application_ruby/blob/master/providers/rails.rb#L216
+
     # Based on: https://github.com/poise/application_ruby/blob/master/providers/rails.rb
     Chef::Log.info 'Running bundle install'
     common_groups = %w(development test staging production doc)
@@ -58,18 +86,6 @@ deploy app['dir'] do
   purge_before_symlink.clear
   create_dirs_before_symlink.clear
   before_symlink do
-    %w(storage).each do |dir|
-      directory File.join(shared_path, dir) do
-        owner new_resource.user
-        group new_resource.group
-        mode '0755'
-        action :create
-      end
-    end
-
-    # NOTE: One might consider using lograte here similar to
-    # https://github.com/poise/application_ruby/blob/master/providers/rails.rb#L216
-
     file File.join(shared_path, '.env') do
       owner new_resource.user
       group new_resource.group
@@ -86,12 +102,18 @@ deploy app['dir'] do
     end
   end
   symlinks(
-    'storage' => 'storage',
     '.env' => '.env',
   )
 
   ### Restart
   before_restart do
+    ruby_block 'grant app user ownership' do
+      block do
+        FileUtils.chown_R(app['user'], app['user'], File.join(shared_path, 'storage'))
+        FileUtils.chown_R(app['user'], app['user'], File.join(shared_path, 'log'))
+      end
+    end
+
     current_release = release_path
     execute 'configure-upstart' do
       user new_resource.user
