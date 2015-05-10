@@ -14,5 +14,7 @@ depends 'openssl', '~> 4.0.0'
 depends 'database', '~> 4.0.6'
 depends 'postgresql', '~> 3.4.18'
 depends 'nginx', '~> 2.7.6'
-depends 'java', '~> 1.31.0'
 depends 'ark', '~> 0.9.0'
+
+# Only for 'java_custom' recipe
+# depends 'java', '~> 1.31.0'
