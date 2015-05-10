@@ -5,10 +5,12 @@ Installs and deploys the load generator Rails application: https://github.com/jo
 ## Platforms
 
 * Ubuntu 12.04 LTS
+* Ubuntu 14.04 LTS
 
 ## Usage
 
 Add the default recipe to your run list: `recipe[load-generator::default]`
+One might need to provision twice (relogin) because the Ruby version seems not to be reflected in the PATH. See `ruby_binary.rb:31ff`.
 
 ## Manage Services
 
