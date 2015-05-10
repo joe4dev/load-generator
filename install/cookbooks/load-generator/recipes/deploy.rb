@@ -93,15 +93,15 @@ deploy app['dir'] do
   ### Restart
   before_restart do
     current_release = release_path
-    log_file = File.join(app['log_dir'], "#{app['rails_env']}.log")
     execute 'configure-upstart' do
       user new_resource.user
+      # --log #{app['log_dir']} has no effect,
+      # Upstarts logs to /var/log/upstart/APPNAME per convention
       command "sudo bin/foreman export upstart /etc/init \
                   --procfile Procfile_production \
                   --env .env \
                   --app #{app['name']} \
                   --concurrency web=1,job=#{app['num_workers']} \
-                  --log #{log_file} \
                   --port #{app['port']} \
                   --user #{app['user']}"
       cwd current_release
