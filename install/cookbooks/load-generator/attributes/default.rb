@@ -21,9 +21,12 @@ default['load-generator']['app']['branch'] = 'master'
 default['load-generator']['app']['num_workers'] = 2
 # should be a multiple of 1000 according to foreman: http://ddollar.github.io/foreman/#EXPORTING
 default['load-generator']['app']['port'] = 3000
+default['load-generator']['app']['hostname'] = nil
 
 ### Environment
+default['load-generator']['env']['RAILS_ENV'] = node['load-generator']['app']['rails_env']
 default['load-generator']['env']['SECRET_KEY_BASE'] = nil
+# Dynamic: [node['cpu']['total'].to_i * 4, 8].min
 default['load-generator']['env']['WEB_CONCURRENCY'] = 3
 
 ### JMeter

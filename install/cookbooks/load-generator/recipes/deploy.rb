@@ -52,17 +52,13 @@ deploy app['dir'] do
   )
   migrate true
   migration_command 'bundle exec rake db:migrate --trace'
-  environment(
-    'RAILS_ENV' => app['rails_env'],
-    # NOTE: This depends on the ruby_binary and doesn't work without this dependency
-    # 'PATH' => ENV['PATH'],
-  )
+  environment(node['load-generator']['env'])
 
   ### Symlinks
   purge_before_symlink.clear
   create_dirs_before_symlink.clear
   before_symlink do
-    %w(log storage).each do |dir|
+    %w(storage).each do |dir|
       directory File.join(shared_path, dir) do
         owner new_resource.user
         group new_resource.group
@@ -90,7 +86,6 @@ deploy app['dir'] do
     end
   end
   symlinks(
-    'log' => 'log',
     'storage' => 'storage',
     '.env' => '.env',
   )
@@ -98,14 +93,15 @@ deploy app['dir'] do
   ### Restart
   before_restart do
     current_release = release_path
+    log_file = File.join(app['log_dir'], "#{app['rails_env']}.log")
     execute 'configure-upstart' do
       user new_resource.user
       command "sudo bin/foreman export upstart /etc/init \
                   --procfile Procfile_production \
                   --env .env \
                   --app #{app['name']} \
-                  --concurrency web=1,worker=#{app['num_workers']} \
-                  --log #{app['log_dir']} \
+                  --concurrency web=1,job=#{app['num_workers']} \
+                  --log #{log_file} \
                   --port #{app['port']} \
                   --user #{app['user']}"
       cwd current_release

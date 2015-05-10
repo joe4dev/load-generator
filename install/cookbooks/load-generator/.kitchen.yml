@@ -17,3 +17,6 @@ suites:
     run_list:
       - recipe[load-generator::default]
     attributes:
+      load-generator:
+        app:
+          hostname: 192.168.33.44
