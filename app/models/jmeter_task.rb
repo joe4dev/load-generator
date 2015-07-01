@@ -2,6 +2,7 @@ require 'fileutils'
 class JmeterTask < ActiveRecord::Base
   before_destroy :cleanup_filesystem
   enum status: [:pending, :in_progress, :completed, :failed]
+  default_scope { order('created_at DESC') }
 
   # TODO: It might be better to store the content of the files in the database
   # and copy then into the appropriate place when necessary (i.e., on perform)
