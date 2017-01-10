@@ -33,5 +33,5 @@ default['load-generator']['env']['WEB_CONCURRENCY'] = 3
 # Downloads: http://jmeter.apache.org/download_jmeter.cgi
 default['ark']['apache_mirror'] = preferred_apache_mirror || node['ark']['apache_mirror']
 default['load-generator']['jmeter']['version'] = '2.13'
-default['load-generator']['jmeter']['source_url'] = "#{node['ark']['apache_mirror']}/jmeter/binaries/apache-jmeter-#{node['load-generator']['jmeter']['version']}.tgz"
+default['load-generator']['jmeter']['source_url'] = "https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-#{node['load-generator']['jmeter']['version']}.tgz"
 default['load-generator']['jmeter']['source_checksum'] = '9fe33d3d6e381103d3ced2962cdef5c164a06fc58c55e247eadf5a5dbcd4d8fe'
