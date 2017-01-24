@@ -12,6 +12,22 @@ Installs and deploys the load generator Rails application: https://github.com/jo
 Add the default recipe to your run list: `recipe[load-generator::default]`
 One might need to provision twice (relogin) because the Ruby version seems not to be reflected in the PATH. See `ruby_binary.rb:31ff`.
 
+### Chef Solo
+
+The following attribues are mandatory using Chef Solo because randomly generated secrets cannot be persistet (e.g., using *node.set*):
+
+```
+default['postgresql']['password']
+default['load-generator']['db']['password']
+default['load-generator']['env']['SECRET_KEY_BASE']
+```
+
+## Testing
+
+```
+kitchen converge; kitchen converge && kitchen verify
+```
+
 ## Manage Services
 
 ```bash
