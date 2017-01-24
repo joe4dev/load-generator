@@ -6,7 +6,7 @@ node.default['nginx']['install_method'] = 'package' # or 'source'
 # node.default['nginx']['source']['checksum'] = e12aa1d5b701edde880ebcc7be47ca171c3fbeed8fa7c8c62054a6f19d27f248'
 node.default['nginx']['init_style'] = 'upstart'
 node.default['nginx']['default_site_enabled'] = false
-include_recipe 'nginx::default'
+include_recipe 'chef_nginx::default'
 
 def detect_public_ip
   cmd = Mixlib::ShellOut.new('curl http://ipecho.net/plain')
@@ -42,6 +42,7 @@ template nginx_config do
   notifies :reload, 'service[nginx]'
 end
 
-nginx_site app['name'], enable: true do
+nginx_site app['name'] do
+  action :enable
   notifies :reload, 'service[nginx]'
 end
