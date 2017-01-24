@@ -21,7 +21,7 @@ end
 
 node.default['authorization']['sudo']['groups'] = [
   'sudo',
-  app['deploy_user'],
+  app['deploy_user']
 ]
 node.default['authorization']['sudo']['passwordless'] = true
 include_recipe 'sudo'

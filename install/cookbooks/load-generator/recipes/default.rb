@@ -1,4 +1,5 @@
 ### Base utilities
+include_recipe 'openssl::default'
 include_recipe 'load-generator::attributes'
 include_recipe 'apt::default'
 include_recipe 'git::default'

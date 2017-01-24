@@ -1,3 +1,7 @@
+# 0.1.2 (2017-01-24)
+
+* Update dependencies by switching to `chef_nginx`
+
 # 0.1.1 (2017-01-24)
 
 * Fix bundler permission error on deployment

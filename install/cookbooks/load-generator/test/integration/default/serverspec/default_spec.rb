@@ -12,11 +12,11 @@ describe 'load-generator::default' do
     expect(port(80)).to be_listening
   end
 
-  it "has a running service of mysql-default" do
+  it "has a running service of postgresql" do
     expect(service("postgresql")).to be_running
   end
 
-  it "has a running service of apache2" do
+  it "has a running service of nginx" do
     expect(service("nginx")).to be_running
   end
 
