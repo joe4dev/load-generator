@@ -1,14 +1,17 @@
 app = node['load-generator']['app']
 
 directory app['dir'] do
-  owner app['user']
-  group app['user']
+  owner app['deploy_user']
+  group app['deploy_user']
   mode '0755'
   recursive true
   action :create
 end
 
-env_variables = node['load-generator']['env'].map{|k,v| "#{k}=#{v}"}.join("\n")
+envs = node['load-generator']['env']
+env_variables = envs.map { |k,v| "#{k}=#{v}" }.join("\n")
+home_env = { 'HOME' => app['deploy_user_home'] }
+deploy_env = envs.merge(home_env).map { |k, v| [k.to_s, v.to_s] }.to_h
 deploy app['dir'] do
   repo app['repo']
   branch app['branch']
@@ -57,6 +60,7 @@ deploy app['dir'] do
     execute bundle_install do
       cwd release_path
       user new_resource.user
+      group new_resource.group
       environment new_resource.environment
     end
 
@@ -80,7 +84,7 @@ deploy app['dir'] do
   )
   migrate true
   migration_command 'bundle exec rake db:migrate --trace'
-  environment(node['load-generator']['env'].map { |k, v| [k.to_s, v.to_s] }.to_h)
+  environment deploy_env
 
   ### Symlinks
   purge_before_symlink.clear

@@ -13,6 +13,7 @@ default['load-generator']['ruby']['checksum'] = nil
 default['load-generator']['app']['name'] = 'load-generator'
 default['load-generator']['app']['user'] = 'apps'
 default['load-generator']['app']['deploy_user'] = 'deploy'
+default['load-generator']['app']['deploy_user_home'] = "/home/#{node['load-generator']['app']['deploy_user']}"
 default['load-generator']['app']['dir'] = '/var/www/load-generator'
 default['load-generator']['app']['log_dir'] = "/var/log/#{node['load-generator']['app']['name']}"
 default['load-generator']['app']['rails_env'] = 'production'
