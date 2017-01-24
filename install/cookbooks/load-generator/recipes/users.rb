@@ -6,10 +6,10 @@ user app['user'] do
 end
 
 user app['deploy_user'] do
-  action :create
   comment 'Deploys the app'
-  supports manage_home: true
-end
+  home app['deploy_user_home']
+  manage_home true
+end.run_action(:create)
 
 group app['user'] do
   action :modify

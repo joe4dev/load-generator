@@ -5,9 +5,11 @@ driver:
   - ["private_network", {ip: "192.168.33.44"}]
   customize:
     memory: 1024
+    cpus: 2
 
 provisioner:
   name: chef_zero
+  require_chef_omnibus: 12.8.1
 
 platforms:
   - name: ubuntu-14.04
@@ -20,3 +22,7 @@ suites:
       load-generator:
         app:
           hostname: 192.168.33.44
+        db:
+          password: myloadgenapppw
+        env:
+          SECRET_KEY_BASE: 3fe397575565365108556c3e5549f139e8078a8ec8fd2675a83de96289b30550a266ac04488d7086322efbe573738e7b3ae005b2e3d9afd718aa337fa5e329cf

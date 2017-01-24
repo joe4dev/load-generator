@@ -4,6 +4,18 @@ This "hacky" Rails application provides a JSON endpoint to submit JMeter tasks v
 
 ## Getting started
 
+### Installation
+
+Docs: https://github.com/joe4dev/load-generator/tree/master/install/cookbooks/load-generator
+
+Initial provisioning currently fails due to non-update PATH as described here: https://github.com/joe4dev/load-generator/issues/1
+
+```shell
+cd install/cookbooks/load-generator
+vagrant up
+vagrant provision
+```
+
 ### Build
 
 `bundle install`
