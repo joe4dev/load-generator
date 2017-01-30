@@ -28,7 +28,14 @@ default['load-generator']['env']['SECRET_KEY_BASE']
 kitchen converge; kitchen converge && kitchen verify
 ```
 
-## Manage Services
+
+## Administer
+
+### Installation directory
+
+`/var/www/load-generator/`
+
+### Manage Services
 
 ```bash
 sudo initctl list
@@ -48,7 +55,7 @@ sudo service postgresql status
 sudo service postgresql restart
 ```
 
-## Show Logs
+### Show Logs
 
 ```bash
 tail -f /var/log/upstart/load-generator-web-*
