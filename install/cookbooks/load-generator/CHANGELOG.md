@@ -1,3 +1,8 @@
+# 0.1.3 (2017-01-30)
+
+* Increase memory for JMeter
+* Use JMeter 3.1 by default
+
 # 0.1.2 (2017-01-24)
 
 * Update dependencies by switching to `chef_nginx`
