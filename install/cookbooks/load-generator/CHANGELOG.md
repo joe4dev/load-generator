@@ -1,3 +1,7 @@
+# 0.1.4 (2017-03-07)
+
+* Add JMeter plugins installer
+
 # 0.1.3 (2017-01-30)
 
 * Increase memory for JMeter

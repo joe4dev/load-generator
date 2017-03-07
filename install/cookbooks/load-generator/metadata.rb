@@ -4,7 +4,7 @@ maintainer_email 'joel.scheuner.dev@gmail.com'
 license          'MIT'
 description      'Installs/Configures load-generator'
 long_description 'Installs/Configures load-generator'
-version          '0.1.3'
+version          '0.1.4'
 
 depends 'apt', '~> 5.0.1'
 depends 'git', '~> 5.0.2'

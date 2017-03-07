@@ -23,4 +23,9 @@ describe 'load-generator::default' do
   describe command('wget http://192.168.33.44 -O - -q') do
     its(:stdout) { should contain('Listing Jmeter Tasks') }
   end
+
+  describe command('PluginsManagerCMD status') do
+    its(:stdout) { should match /jpgc-casutg=2.1/ }
+    its(:stdout) { should match /jpgc-dummy/ }
+  end
 end

@@ -45,3 +45,15 @@ total_memory = node['memory']['total'].chomp('kB').to_i rescue DEFAULT_MEMORY # 
 xmx = (total_memory / 1000 * node['load-generator']['jmeter']['memory_factor']).to_i
 default['load-generator']['jmeter']['heap'] = "-Xms512m -Xmx#{xmx}m"
 default['load-generator']['jmeter']['perm'] = "-XX:PermSize=256m -XX:MaxPermSize=256m"
+
+# JMeter Plugins
+default['load-generator']['jmeter']['cmd_runner_url'] = 'http://search.maven.org/remotecontent?filepath=kg/apc/cmdrunner/2.0/cmdrunner-2.0.jar'
+default['load-generator']['jmeter']['plugins_manager_url'] = 'https://repo1.maven.org/maven2/kg/apc/jmeter-plugins-manager/0.11/jmeter-plugins-manager-0.11.jar'
+default['load-generator']['jmeter']['plugins'] = {
+  # Key: Name according to the download button at https://jmeter-plugins.org/
+  #      Example: https://jmeter-plugins.org/?search=jpgc-casutg
+  # Value: Version
+  # Examples:
+ # 'jpgc-casutg' => '2.1',
+ # 'jpgc-dummy' => '', # installs latest version
+}

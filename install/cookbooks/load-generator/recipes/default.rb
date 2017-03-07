@@ -8,6 +8,7 @@ include_recipe 'load-generator::users'
 ### Runtime dependencies
 include_recipe 'load-generator::java_package'
 include_recipe 'load-generator::jmeter_binary'
+include_recipe 'load-generator::jmeter_plugins'
 include_recipe 'load-generator::jmeter_configure'
 
 ### Installation dependencies
