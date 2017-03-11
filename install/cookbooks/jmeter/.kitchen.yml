@@ -1,0 +1,25 @@
+---
+driver:
+  name: vagrant
+  network:
+  - ["private_network", {ip: "192.168.33.42"}]
+  customize:
+    memory: 1024
+    cpus: 2
+
+provisioner:
+  name: chef_zero
+  require_chef_omnibus: 12.8.1
+
+platforms:
+  - name: ubuntu-14.04
+
+suites:
+  - name: default
+    run_list:
+      - recipe[jmeter::default]
+    attributes:
+        jmeter:
+          plugins:
+            jpgc-casutg: 2.1
+            jpgc-dummy:

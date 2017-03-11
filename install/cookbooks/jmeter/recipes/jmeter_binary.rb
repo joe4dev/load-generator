@@ -1,6 +1,6 @@
 # Github: https://github.com/burtlo/ark
 # Supermarket: https://supermarket.chef.io/cookbooks/ark
-jmeter = node['load-generator']['jmeter']
+jmeter = node['jmeter']
 ark 'jmeter' do
   url jmeter['source_url']
   version jmeter['version']

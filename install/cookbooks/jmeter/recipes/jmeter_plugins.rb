@@ -1,6 +1,6 @@
 ## Install plugin manager
 # https://jmeter-plugins.org/wiki/PluginsManager/#Plugins-Manager-from-Command-Line
-jmeter = node['load-generator']['jmeter']
+jmeter = node['jmeter']
 jmeter_home = '/usr/local/jmeter'
 plugin_manager = "#{jmeter_home}/lib/ext/jmeter-plugins-manager.jar"
 

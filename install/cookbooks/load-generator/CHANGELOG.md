@@ -1,3 +1,7 @@
+# 0.1.5 (2017-03-11)
+
+* Extract JMeter into separate cookbook
+
 # 0.1.4 (2017-03-07)
 
 * Add JMeter plugins installer

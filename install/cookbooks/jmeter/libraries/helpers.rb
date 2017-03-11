@@ -1,4 +1,4 @@
-module LoadGenerator
+module JMeter
   module Helpers
     def preferred_apache_mirror(mirror_api_url = 'http://www.apache.org/dyn/closer.cgi?as_json=1')
       grep_expression = '(?<="preferred": ")[^"]*'
