@@ -18,6 +18,7 @@ suites:
   - name: default
     run_list:
       - recipe[load-generator::default]
+      - recipe[jmeter::service]
     attributes:
       load-generator:
         app:
@@ -30,3 +31,4 @@ suites:
         plugins:
           jpgc-casutg: 2.1
           jpgc-dummy:
+        hostname: 192.168.33.44
