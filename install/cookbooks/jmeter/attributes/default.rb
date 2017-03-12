@@ -1,5 +1,6 @@
 extend JMeter::Helpers
 
+## Installation
 # Downloads: http://jmeter.apache.org/download_jmeter.cgi
 default['ark']['apache_mirror'] = preferred_apache_mirror || node['ark']['apache_mirror']
 default['jmeter']['version'] = '3.1'
@@ -7,6 +8,7 @@ default['jmeter']['source_url'] = "https://archive.apache.org/dist/jmeter/binari
 # SHA-256 checksum `shasum -a 256`
 default['jmeter']['source_checksum'] = 'e697a17ef47f645c81f02c8f98f56400e2a182fa580904d329a0d277935edeec'
 
+## Runtime
 DEFAULT_MEMORY = 640 # such that 80% are 512_000
 # according to: https://www.blazemeter.com/blog/9-easy-solutions-jmeter-load-test-%E2%80%9Cout-memory%E2%80%9D-failure
 default['jmeter']['memory_factor'] = 0.8
@@ -14,6 +16,13 @@ total_memory = node['memory']['total'].chomp('kB').to_i rescue DEFAULT_MEMORY # 
 xmx = (total_memory / 1000 * node['jmeter']['memory_factor']).to_i
 default['jmeter']['heap'] = "-Xms512m -Xmx#{xmx}m"
 default['jmeter']['perm'] = "-XX:PermSize=256m -XX:MaxPermSize=256m"
+
+# JMeter server
+default['jmeter']['user'] = 'root'
+default['jmeter']['hostname'] = node['ipaddress'] || '127.0.0.1'
+default['jmeter']['env'] = ''
+default['jmeter']['cli_args'] = "-Djava.rmi.server.hostname=#{node['jmeter']['hostname']}"
+default['jmeter']['service'] = 'enable' # or 'disable' according to https://github.com/poise/poise-service#actions
 
 # JMeter Plugins
 default['jmeter']['cmd_runner_url'] = 'http://search.maven.org/remotecontent?filepath=kg/apc/cmdrunner/2.0/cmdrunner-2.0.jar'

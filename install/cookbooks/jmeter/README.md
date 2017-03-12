@@ -10,10 +10,29 @@ Installs and deploys Apache JMeter: http://jmeter.apache.org/
 
 Add the default recipe to your run list: `recipe[jmeter::default]`
 
-Additionally add the `jmeter::jmeter_server` recipe if you want to start JMeter as a slave node.
+Additionally add the `jmeter::service` recipe if you want to start a JMeter server as a slave node.
 
-## Administer
+## Administration
 
-### Installation directory
+* Installation directory: `/usr/local/jmeter/bin/jmeter`
 
-`/usr/local/jmeter-3.1/bin/jmeter`
+* JMeter server Upstart config: `/etc/init/jmeter-server.conf`
+
+* Start service:
+
+    ```shell
+    sudo service jmeter-server start
+    ```
+
+* Stop service:
+
+    ```shell
+    sudo service jmeter-server stop
+    ```
+
+* Check logs:
+
+    ```shell
+    tail -f /var/log/upstart/jmeter-server.log
+    ```
+
