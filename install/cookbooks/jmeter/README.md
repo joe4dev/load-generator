@@ -1,4 +1,4 @@
-# load-generator
+# jmeter
 
 Installs and deploys Apache JMeter: http://jmeter.apache.org/
 
