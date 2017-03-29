@@ -32,7 +32,7 @@ class JmeterTask < ActiveRecord::Base
 
   def init_filesystem(params)
     FileUtils.mkdir_p(base_path)
-    FileUtils.cp(params[:test_plan_file].path, file_path(self.test_plan))
+    FileUtils.cp(params[:test_plan_file].path, file_path(self.test_plan)) rescue nil
     FileUtils.cp(params[:benchmark_file].path, benchmark_file_path)
     FileUtils.cp(params[:node_file].path, file_path(self.node))
   end
