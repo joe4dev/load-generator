@@ -7,6 +7,7 @@ include_recipe 'load-generator::users'
 
 ### Runtime dependencies
 include_recipe 'jmeter::default'
+package 'iperf'
 
 ### Installation dependencies
 include_recipe 'load-generator::database'
