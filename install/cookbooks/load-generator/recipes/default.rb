@@ -6,9 +6,7 @@ include_recipe 'git::default'
 include_recipe 'load-generator::users'
 
 ### Runtime dependencies
-include_recipe 'load-generator::java_package'
-include_recipe 'load-generator::jmeter_binary'
-include_recipe 'load-generator::jmeter_configure'
+include_recipe 'jmeter::default'
 
 ### Installation dependencies
 include_recipe 'load-generator::database'

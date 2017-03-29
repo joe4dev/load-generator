@@ -1,5 +1,3 @@
-extend LoadGenerator::Helpers
-
 ### Database
 default['load-generator']['db']['name'] = 'load_generator_production'
 default['load-generator']['db']['user'] = 'load_generator'
@@ -29,19 +27,3 @@ default['load-generator']['env']['RAILS_ENV'] = node['load-generator']['app']['r
 default['load-generator']['env']['SECRET_KEY_BASE'] = nil
 # Dynamic: [node['cpu']['total'].to_i * 4, 8].min
 default['load-generator']['env']['WEB_CONCURRENCY'] = 3
-
-### JMeter
-# Downloads: http://jmeter.apache.org/download_jmeter.cgi
-default['ark']['apache_mirror'] = preferred_apache_mirror || node['ark']['apache_mirror']
-default['load-generator']['jmeter']['version'] = '3.1'
-default['load-generator']['jmeter']['source_url'] = "https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-#{node['load-generator']['jmeter']['version']}.tgz"
-# SHA-256 checksum `shasum -a 256`
-default['load-generator']['jmeter']['source_checksum'] = 'e697a17ef47f645c81f02c8f98f56400e2a182fa580904d329a0d277935edeec'
-
-DEFAULT_MEMORY = 640 # such that 80% are 512_000
-# according to: https://www.blazemeter.com/blog/9-easy-solutions-jmeter-load-test-%E2%80%9Cout-memory%E2%80%9D-failure
-default['load-generator']['jmeter']['memory_factor'] = 0.8
-total_memory = node['memory']['total'].chomp('kB').to_i rescue DEFAULT_MEMORY # in kB
-xmx = (total_memory / 1000 * node['load-generator']['jmeter']['memory_factor']).to_i
-default['load-generator']['jmeter']['heap'] = "-Xms512m -Xmx#{xmx}m"
-default['load-generator']['jmeter']['perm'] = "-XX:PermSize=256m -XX:MaxPermSize=256m"
