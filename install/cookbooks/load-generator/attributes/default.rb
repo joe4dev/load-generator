@@ -17,7 +17,7 @@ default['load-generator']['app']['log_dir'] = "/var/log/#{node['load-generator']
 default['load-generator']['app']['rails_env'] = 'production'
 default['load-generator']['app']['repo'] = 'https://github.com/joe4dev/load-generator.git'
 default['load-generator']['app']['branch'] = 'master'
-default['load-generator']['app']['num_workers'] = 2
+default['load-generator']['app']['num_workers'] = 1
 # should be a multiple of 1000 according to foreman: http://ddollar.github.io/foreman/#EXPORTING
 default['load-generator']['app']['port'] = 3000
 default['load-generator']['app']['hostname'] = nil
