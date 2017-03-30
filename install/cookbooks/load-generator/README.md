@@ -12,6 +12,11 @@ Installs and deploys the load generator Rails application: https://github.com/jo
 Add the default recipe to your run list: `recipe[load-generator::default]`
 One might need to provision twice (relogin) because the Ruby version seems not to be reflected in the PATH. See `ruby_binary.rb:31ff`.
 
+### Concurrency re-configuration
+
+Concurrency values are currently only updated when a new version is deployed. Notice that this only happens if there changes are available at the `load-generator` master repo.
+Also, if you reduce the concurrency (e.g., from jobs=2 to jobs=1), you might need to manually delete the additional Upstart configurations because they are not automatically removed. Example: `sudo rm /etc/init/load-generator-job-2.conf`
+
 ### Chef Solo
 
 The following attribues are mandatory using Chef Solo because randomly generated secrets cannot be persistet (e.g., using *node.set*):
