@@ -35,6 +35,8 @@ class JmeterTask < ActiveRecord::Base
     FileUtils.cp(params[:test_plan_file].path, file_path(self.test_plan)) rescue nil
     FileUtils.cp(params[:benchmark_file].path, benchmark_file_path)
     FileUtils.cp(params[:node_file].path, file_path(self.node))
+    # Make sure that files are readable for other users (e.g., `ubuntu` admin)
+    FileUtils.chmod_R 0644, base_path
   end
 
   def benchmark_file_path
