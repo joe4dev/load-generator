@@ -34,7 +34,7 @@ GRAPH
     apt (~> 5.0.1)
     ark (~> 2.2.1)
     poise-service (~> 1.4.2)
-  load-generator (0.1.5)
+  load-generator (0.1.6)
     apt (~> 5.0.1)
     ark (~> 2.2.1)
     chef_nginx (~> 5.0.6)

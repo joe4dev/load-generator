@@ -2,6 +2,8 @@ app = node['load-generator']['app']
 
 user app['user'] do
   action :create
+  home "/home/#{app['user']}"
+  manage_home true
   comment 'Runs the app'
 end
 

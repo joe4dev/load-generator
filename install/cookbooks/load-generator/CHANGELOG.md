@@ -1,3 +1,7 @@
+# 0.1.6 (2017-04-01)
+
+* Manage apps user home (allows debugging because some dev tools such as pry require a home directory)
+
 # 0.1.5 (2017-03-11)
 
 * Extract JMeter into separate cookbook
